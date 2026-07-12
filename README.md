@@ -49,6 +49,11 @@ as open physical obligations rather than hidden as theorems.
 - actual `specialUnitaryGroup (Fin 2) ℂ` and `(Fin 3)` fundamental matrix actions
 - composition, identity, determinant-one, and Hermitian-norm preservation for
   Higgs doublets and color triplets
+- explicit antisymmetric weak tensor `ε`, its identity `UᵀεU = ε`, and
+  SU(2)-invariant Yukawa doublet contractions
+- nonabelian lattice links, local frame transformations, covariant matter
+  transport and finite differences, triangle holonomy, and gauge-invariant flatness
+- gauge-invariant nonabelian Wilson trace/action and an SU(2)-doublet Higgs radial potential
 
 Run:
 

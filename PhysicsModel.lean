@@ -14,3 +14,5 @@ import PhysicsModel.Minkowski4
 import PhysicsModel.ElectroweakCharges
 import PhysicsModel.EinsteinTensor4
 import PhysicsModel.SpecialUnitary
+import PhysicsModel.SU2Yukawa
+import PhysicsModel.NonAbelianGauge
