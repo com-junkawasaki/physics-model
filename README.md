@@ -33,6 +33,11 @@ as open physical obligations rather than hidden as theorems.
 - checked homogeneous scalar matter--geometry example connecting those two limits
 - exact one-generation gravitational, `U(1)³`, `SU(2)²U(1)`, and `SU(3)²U(1)`
   anomaly cancellation
+- Lorentz-boost invariance of the `E²-p²` mass shell
+- resonance mass-shell preservation under certified boosts
+- explicit balanced two-channel S-matrix with exact Born-probability conservation
+- complex abelian Higgs potential: positivity, gauge invariance, vacuum radius,
+  nonzero vacuum, phase degeneracy, and global minimality
 
 Run:
 
@@ -46,9 +51,10 @@ lake exe physics-model
 1. extend the checked homogeneous scalar continuum certificate to a
    four-dimensional tensor geometry with controlled coarse graining;
 2. construct the nonabelian Standard Model representations, couplings, chirality,
-   and symmetry breaking from microscopic modes (the rational hypercharge anomaly
-   sums are now checked);
-3. recover Lorentz symmetry and unitary scattering;
+   and full electroweak symmetry breaking from microscopic modes (the rational
+   hypercharge anomaly sums and abelian Higgs vacuum mechanism are now checked);
+3. extend the checked 1+1-dimensional Lorentz mass shell and two-channel unitary
+   scattering to interacting 3+1-dimensional quantum fields;
 4. derive amplitude selection and normalization from relational dynamics (the
    finite norm-square probability calculus itself is now checked);
 5. explain black-hole thermodynamics and evaporation;

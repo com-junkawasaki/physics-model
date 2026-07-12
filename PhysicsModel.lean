@@ -8,3 +8,5 @@ import PhysicsModel.ContinuumLimit
 import PhysicsModel.EinsteinLimit
 import PhysicsModel.StandardModelAnomaly
 import PhysicsModel.MatterGravityBridge
+import PhysicsModel.LorentzScattering
+import PhysicsModel.HiggsMechanism
