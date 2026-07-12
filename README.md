@@ -28,6 +28,11 @@ as open physical obligations rather than hidden as theorems.
   three generations, anomaly cancellation)
 - concrete local U(1) frame action on Inc--RQM AB link fields
 - explicit two-detector amplitudes `(1 ± u)/2` with probabilities summing to one
+- Wilson plaquette density converges to Maxwell density `F²/2` under dyadic refinement
+- microscopic residual convergence implies the effective Einstein-sector equation
+- checked homogeneous scalar matter--geometry example connecting those two limits
+- exact one-generation gravitational, `U(1)³`, `SU(2)²U(1)`, and `SU(3)²U(1)`
+  anomaly cancellation
 
 Run:
 
@@ -38,9 +43,11 @@ lake exe physics-model
 
 ## Open physics obligations
 
-1. construct, rather than assume, the zero-residual continuum certificate;
-2. construct the Standard Model gauge identification, representations, couplings,
-   chirality, symmetry breaking, and anomaly certificate from microscopic modes;
+1. extend the checked homogeneous scalar continuum certificate to a
+   four-dimensional tensor geometry with controlled coarse graining;
+2. construct the nonabelian Standard Model representations, couplings, chirality,
+   and symmetry breaking from microscopic modes (the rational hypercharge anomaly
+   sums are now checked);
 3. recover Lorentz symmetry and unitary scattering;
 4. derive amplitude selection and normalization from relational dynamics (the
    finite norm-square probability calculus itself is now checked);
