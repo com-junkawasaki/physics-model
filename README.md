@@ -92,6 +92,8 @@ as open physical obligations rather than hidden as theorems.
 - uniform sixteen-component residual convergence implies the full effective Einstein equation
 - arbitrary invertible `3+1` Lorentz transformations preserving the Minkowski bilinear form,
   closed under identity, composition, and inverse, with general mass-shell invariance
+- Lorentz-covariant finite multiparticle momentum conservation and `2→2` Mandelstam
+  invariants `s,t,u`, including invariant amplitudes depending only on those invariants
 
 Run:
 
@@ -108,8 +110,8 @@ lake exe physics-model
    chirality, and full electroweak symmetry breaking from microscopic modes
    (representation dimensions, charges, Yukawa hypercharges, anomaly sums, and
    the abelian Higgs vacuum mechanism are now checked);
-3. extend the now-checked arbitrary 3+1-dimensional Lorentz mass-shell invariance
-   and two-channel unitary scattering to interacting fields and multiparticle amplitudes;
+3. derive interacting field dynamics and nontrivial multiparticle unitarity beyond
+   the now-checked Lorentz-covariant finite-particle kinematics and `2→2` invariant amplitudes;
 4. derive amplitude selection and normalization from relational dynamics (the
    finite norm-square probability calculus itself is now checked);
 5. derive the now-checked Schwarzschild thermodynamic and evaporation formulas

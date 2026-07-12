@@ -33,3 +33,4 @@ import PhysicsModel.CurvatureError
 import PhysicsModel.EinsteinError
 import PhysicsModel.EinsteinConvergence
 import PhysicsModel.GeneralLorentz4
+import PhysicsModel.RelativisticScattering
