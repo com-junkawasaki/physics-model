@@ -67,6 +67,8 @@ as open physical obligations rather than hidden as theorems.
   temperature, first law, negative evaporation/entropy rates, and `M³` lifetime scaling
 - slow-roll scalar/tensor power spectra, positivity, pivot normalization,
   spectral tilts, `r=16ε`, and the falsifiable consistency relation `r=-8n_t`
+- homogeneous nonabelian curvature `F=[A,A]`, adjoint covariance, Jacobi identity,
+  and the differential/second Yang--Mills Bianchi identity `D_[λ F_{μν]}=0`
 
 Run:
 

@@ -21,3 +21,4 @@ import PhysicsModel.Conservation
 import PhysicsModel.CovariantDerivative
 import PhysicsModel.BlackHole
 import PhysicsModel.Cosmology
+import PhysicsModel.YangMillsBianchi
