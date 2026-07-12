@@ -12,11 +12,10 @@ universe u
 
 namespace EinsteinSector
 
-variable {Tensor : Type u} [NormedAddCommGroup Tensor] [NormedSpace ℝ Tensor]
-
 /-- A refinement sequence has both a computed macroscopic limit and vanishing
 microscopic equation error.  Uniqueness of limits then forces Einstein's equation. -/
 theorem einstein_from_refinement
+    {Tensor : Type u} [NormedAddCommGroup Tensor] [NormedSpace ℝ Tensor]
     (sector : EinsteinSector Tensor) (microscopicResidual : ℕ → Tensor)
     (coarse_limit : Tendsto microscopicResidual atTop (𝓝 sector.residual))
     (vanishing_error : Tendsto microscopicResidual atTop (𝓝 0)) :
@@ -26,6 +25,7 @@ theorem einstein_from_refinement
 
 /-- Quantitative residual bounds tending to zero imply the vanishing-error premise. -/
 theorem residual_tendsto_zero_of_norm
+    {Tensor : Type u} [NormedAddCommGroup Tensor]
     (microscopicResidual : ℕ → Tensor)
     (bound : ℕ → ℝ)
     (bound_nonnegative : ∀ n, 0 ≤ bound n)

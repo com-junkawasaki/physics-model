@@ -60,6 +60,9 @@ as open physical obligations rather than hidden as theorems.
 - first algebraic Bianchi identity for torsion-free connections
 - stress-energy conservation from the Einstein equation, contracted Bianchi
   condition, metric compatibility, and nonzero gravitational coupling
+- component covariant derivative `∇_λT_{μν}`, inverse-metric contraction, and
+  concrete linear divergence operator
+- derived flat-space contracted Bianchi identity and component stress-energy conservation
 
 Run:
 
