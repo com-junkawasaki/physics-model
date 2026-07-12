@@ -54,6 +54,9 @@ as open physical obligations rather than hidden as theorems.
 - nonabelian lattice links, local frame transformations, covariant matter
   transport and finite differences, triangle holonomy, and gauge-invariant flatness
 - gauge-invariant nonabelian Wilson trace/action and an SU(2)-doublet Higgs radial potential
+- explicit four-index connection curvature, Ricci contraction, scalar curvature,
+  and Einstein tensor over `Fin 4`
+- Riemann last-index antisymmetry and a fully checked flat-vacuum Einstein sector
 
 Run:
 
@@ -64,8 +67,8 @@ lake exe physics-model
 
 ## Open physics obligations
 
-1. construct the metric, connection, curvature, and controlled coarse-graining
-   map feeding the checked four-dimensional tensor residual theorem;
+1. construct a controlled coarse-graining map feeding the now-checked metric,
+   connection, Riemann, Ricci, and four-dimensional Einstein tensor pipeline;
 2. construct explicit nonabelian matrix group actions, running couplings,
    chirality, and full electroweak symmetry breaking from microscopic modes
    (representation dimensions, charges, Yukawa hypercharges, anomaly sums, and

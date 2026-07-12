@@ -16,3 +16,4 @@ import PhysicsModel.EinsteinTensor4
 import PhysicsModel.SpecialUnitary
 import PhysicsModel.SU2Yukawa
 import PhysicsModel.NonAbelianGauge
+import PhysicsModel.Geometry4
