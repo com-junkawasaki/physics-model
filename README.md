@@ -89,6 +89,7 @@ as open physical obligations rather than hidden as theorems.
 - four-dimensional propagation of connection and connection-derivative errors to Riemann curvature
 - explicit Riemann-to-Ricci, scalar-curvature, and Einstein-tensor refinement error bounds
 - quantitative stability of the full `G + Λg - κT` field-equation residual
+- uniform sixteen-component residual convergence implies the full effective Einstein equation
 
 Run:
 

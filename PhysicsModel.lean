@@ -31,3 +31,4 @@ import PhysicsModel.ApproximateRefinement
 import PhysicsModel.ConnectionError
 import PhysicsModel.CurvatureError
 import PhysicsModel.EinsteinError
+import PhysicsModel.EinsteinConvergence
