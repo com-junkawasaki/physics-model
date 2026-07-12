@@ -65,6 +65,8 @@ as open physical obligations rather than hidden as theorems.
 - derived flat-space contracted Bianchi identity and component stress-energy conservation
 - Schwarzschild radius, horizon area, Bekenstein--Hawking entropy, Hawking
   temperature, first law, negative evaporation/entropy rates, and `M³` lifetime scaling
+- slow-roll scalar/tensor power spectra, positivity, pivot normalization,
+  spectral tilts, `r=16ε`, and the falsifiable consistency relation `r=-8n_t`
 
 Run:
 
@@ -87,5 +89,6 @@ lake exe physics-model
    finite norm-square probability calculus itself is now checked);
 5. derive the now-checked Schwarzschild thermodynamic and evaporation formulas
    from microscopic quantum geometry, including greybody factors and information recovery;
-6. produce falsifiable cosmological predictions;
+6. derive the now-checked leading slow-roll spectra and consistency relation from
+   microscopic relational dynamics and confront higher-order predictions with data;
 7. construct clock equivalences for realistic interacting quantum clocks.
