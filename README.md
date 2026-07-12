@@ -90,6 +90,8 @@ as open physical obligations rather than hidden as theorems.
 - explicit Riemann-to-Ricci, scalar-curvature, and Einstein-tensor refinement error bounds
 - quantitative stability of the full `G + Λg - κT` field-equation residual
 - uniform sixteen-component residual convergence implies the full effective Einstein equation
+- arbitrary invertible `3+1` Lorentz transformations preserving the Minkowski bilinear form,
+  closed under identity, composition, and inverse, with general mass-shell invariance
 
 Run:
 
