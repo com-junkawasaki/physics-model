@@ -29,3 +29,4 @@ import PhysicsModel.ContractedBianchi4
 import PhysicsModel.CoarseGeometry4
 import PhysicsModel.ApproximateRefinement
 import PhysicsModel.ConnectionError
+import PhysicsModel.CurvatureError
