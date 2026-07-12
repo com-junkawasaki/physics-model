@@ -87,6 +87,8 @@ as open physical obligations rather than hidden as theorems.
 - nodewise approximate-refinement certificates, explicit metric error bounds, and componentwise metric convergence
 - explicit propagation of inverse-metric and first-derivative errors to Levi--Civita connection coefficients
 - four-dimensional propagation of connection and connection-derivative errors to Riemann curvature
+- explicit Riemann-to-Ricci, scalar-curvature, and Einstein-tensor refinement error bounds
+- quantitative stability of the full `G + Λg - κT` field-equation residual
 
 Run:
 

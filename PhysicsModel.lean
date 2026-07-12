@@ -30,3 +30,4 @@ import PhysicsModel.CoarseGeometry4
 import PhysicsModel.ApproximateRefinement
 import PhysicsModel.ConnectionError
 import PhysicsModel.CurvatureError
+import PhysicsModel.EinsteinError
