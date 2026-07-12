@@ -108,8 +108,8 @@ lake exe physics-model
    chirality, and full electroweak symmetry breaking from microscopic modes
    (representation dimensions, charges, Yukawa hypercharges, anomaly sums, and
    the abelian Higgs vacuum mechanism are now checked);
-3. extend the checked 3+1-dimensional axis-boost mass shell and two-channel
-   unitary scattering to arbitrary Lorentz transformations and interacting fields;
+3. extend the now-checked arbitrary 3+1-dimensional Lorentz mass-shell invariance
+   and two-channel unitary scattering to interacting fields and multiparticle amplitudes;
 4. derive amplitude selection and normalization from relational dynamics (the
    finite norm-square probability calculus itself is now checked);
 5. derive the now-checked Schwarzschild thermodynamic and evaporation formulas
