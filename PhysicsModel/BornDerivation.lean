@@ -1,6 +1,7 @@
 import PhysicsModel.Born
 import Mathlib.Data.Finset.Card
 import Mathlib.Tactic.FieldSimp
+import Mathlib.Topology.Instances.Real.Lemmas
 
 /-! # Born weights from symmetric fine branching and additive coarse graining
 
@@ -100,5 +101,59 @@ theorem event_complement_normalized (experiment : SymmetricBranching n)
   exact div_self hn
 
 end SymmetricBranching
+
+/-- A physical probability response continuously extending the rational branch rule. -/
+structure ContinuousWeightResponse where
+  response : ℝ → ℝ
+  continuous_response : Continuous response
+  rationalBorn : ∀ q : ℚ, 0 ≤ (q : ℝ) → (q : ℝ) ≤ 1 → response q = q
+
+namespace ContinuousWeightResponse
+
+instance : CoeFun ContinuousWeightResponse (fun _ => ℝ → ℝ) :=
+  ⟨fun rule => rule.response⟩
+
+/-- Continuity and density uniquely extend the rational Born weights to `[0,1]`. -/
+theorem eq_identity_on_unit_interval (rule : ContinuousWeightResponse)
+    {weight : ℝ} (nonnegative : 0 ≤ weight) (atMostOne : weight ≤ 1) :
+    rule weight = weight := by
+  let interval : Set ℝ := Set.Icc 0 1
+  have hnontrivial : interval.Nontrivial := by
+    apply Set.nontrivial_of_lt (x := (0 : ℝ)) (y := (1 : ℝ))
+    · simp [interval]
+    · simp [interval]
+    · norm_num
+  have hclosure :
+      closure (interval ∩ Set.range ((↑) : ℚ → ℝ)) = closure interval :=
+    closure_ordConnected_inter_rat Set.ordConnected_Icc hnontrivial
+  have hclosed : IsClosed {x : ℝ | rule x = x} :=
+    isClosed_eq rule.continuous_response continuous_id
+  have hsubset : interval ∩ Set.range ((↑) : ℚ → ℝ) ⊆ {x : ℝ | rule x = x} := by
+    intro x hx
+    rcases hx.2 with ⟨q, rfl⟩
+    exact rule.rationalBorn q hx.1.1 hx.1.2
+  have hweight : weight ∈ interval := ⟨nonnegative, atMostOne⟩
+  have hmem : weight ∈ closure (interval ∩ Set.range ((↑) : ℚ → ℝ)) := by
+    rw [hclosure]
+    exact subset_closure hweight
+  exact hclosed.closure_subset_iff.mpr hsubset hmem
+
+/-- Therefore every normalized finite complex amplitude receives exactly its Born weight. -/
+theorem normalized_amplitude_probability (rule : ContinuousWeightResponse)
+    (measurement : BornMeasurement) (outcome : measurement.Outcome) :
+    rule (Complex.normSq (measurement.amplitude outcome)) =
+      Complex.normSq (measurement.amplitude outcome) := by
+  apply rule.eq_identity_on_unit_interval
+  · exact Complex.normSq_nonneg _
+  · exact measurement.probability_le_one outcome
+
+/-- The continuous response is pointwise identical to the checked Born probability. -/
+theorem equals_born_probability (rule : ContinuousWeightResponse)
+    (measurement : BornMeasurement) (outcome : measurement.Outcome) :
+    rule (Complex.normSq (measurement.amplitude outcome)) =
+      measurement.probability outcome := by
+  exact rule.normalized_amplitude_probability measurement outcome
+
+end ContinuousWeightResponse
 
 end PhysicsModel.BornDerivation

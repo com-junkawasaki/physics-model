@@ -96,6 +96,8 @@ as open physical obligations rather than hidden as theorems.
   invariants `s,t,u`, including invariant amplitudes depending only on those invariants
 - finite symmetric-branch derivation of rational Born weights `m/n`, additive coarse-event
   probabilities, complementary normalization, and equality with squared amplitudes
+- continuity-and-density uniqueness of the Born response on `[0,1]`, extending rational
+  branch weights to every component of an arbitrary normalized finite complex amplitude
 
 Run:
 
@@ -114,9 +116,9 @@ lake exe physics-model
    the abelian Higgs vacuum mechanism are now checked);
 3. derive interacting field dynamics and nontrivial multiparticle unitarity beyond
    the now-checked Lorentz-covariant finite-particle kinematics and `2→2` invariant amplitudes;
-4. derive branch symmetry, amplitude selection, and normalization from relational
-   dynamics, and extend the now-checked rational symmetric-branch Born weights to
-   arbitrary amplitudes by a physically justified continuity principle;
+4. derive branch symmetry, amplitude selection, normalization, and response continuity
+   from relational dynamics (given continuity, the extension from rational symmetric
+   branches to arbitrary normalized amplitudes is now checked);
 5. derive the now-checked Schwarzschild thermodynamic and evaporation formulas
    from microscopic quantum geometry, including greybody factors and information recovery;
 6. derive the now-checked leading slow-roll spectra and consistency relation from
