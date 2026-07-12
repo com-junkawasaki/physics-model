@@ -26,3 +26,4 @@ import PhysicsModel.ClockGauge
 import PhysicsModel.QuantumClockError
 import PhysicsModel.SecondBianchi4
 import PhysicsModel.ContractedBianchi4
+import PhysicsModel.CoarseGeometry4

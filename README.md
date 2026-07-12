@@ -81,6 +81,9 @@ as open physical obligations rather than hidden as theorems.
   `∇^μR_{μν}=½∇_νR` and `∇^μG_{μν}=0`
 - componentwise differentiated Einstein equation implies `∇^μT_{μν}=0` for
   nonzero gravitational coupling
+- finite relational-chart Gram metric, symmetry and diagonal positivity,
+  Levi--Civita connection, torsion freedom, curvature, and Einstein-sector assembly
+- binary node refinement with split weights and exact coarse-metric preservation
 
 Run:
 
