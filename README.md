@@ -84,6 +84,7 @@ as open physical obligations rather than hidden as theorems.
 - finite relational-chart Gram metric, symmetry and diagonal positivity,
   Levi--Civita connection, torsion freedom, curvature, and Einstein-sector assembly
 - binary node refinement with split weights and exact coarse-metric preservation
+- nodewise approximate-refinement certificates, explicit metric error bounds, and componentwise metric convergence
 
 Run:
 
