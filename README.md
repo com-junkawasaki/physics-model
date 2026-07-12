@@ -98,6 +98,8 @@ as open physical obligations rather than hidden as theorems.
   probabilities, complementary normalization, and equality with squared amplitudes
 - continuity-and-density uniqueness of the Born response on `[0,1]`, extending rational
   branch weights to every component of an arbitrary normalized finite complex amplitude
+- electroweak Higgs neutral mass operator, massless photon kernel, massive `Z` eigenvector,
+  nonnegative `W/Z` masses, tree-level mass relation, and surviving electric generator
 
 Run:
 
@@ -110,10 +112,10 @@ lake exe physics-model
 
 1. construct a controlled coarse-graining map feeding the now-checked metric,
    connection, Riemann, Ricci, and four-dimensional Einstein tensor pipeline;
-2. construct explicit nonabelian matrix group actions, running couplings,
-   chirality, and full electroweak symmetry breaking from microscopic modes
-   (representation dimensions, charges, Yukawa hypercharges, anomaly sums, and
-   the abelian Higgs vacuum mechanism are now checked);
+2. derive running couplings, chirality, and the now-checked algebraic electroweak
+   breaking sector from microscopic modes (matrix group actions, representation
+   dimensions, charges, Yukawa rules, anomaly sums, the Higgs vacuum, photon kernel,
+   and `W/Z` tree-level mass relations are checked);
 3. derive interacting field dynamics and nontrivial multiparticle unitarity beyond
    the now-checked Lorentz-covariant finite-particle kinematics and `2→2` invariant amplitudes;
 4. derive branch symmetry, amplitude selection, normalization, and response continuity
