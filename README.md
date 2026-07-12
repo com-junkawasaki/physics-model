@@ -73,6 +73,8 @@ as open physical obligations rather than hidden as theorems.
   round-trip invariance, and prediction-independent clock reparametrization
 - finite-accuracy probabilistic clock changes, additive backreaction-error bounds,
   and recovery of exact prediction equality at zero error
+- concrete convex clock-noise/backreaction model `pδ=(1-δ)p+δq` with the
+  derived uniform prediction bound `|pδ-p|≤δ`
 
 Run:
 
