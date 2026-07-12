@@ -102,6 +102,8 @@ as open physical obligations rather than hidden as theorems.
   nonnegative `W/Z` masses, tree-level mass relation, and surviving electric generator
 - abstract gamma-five involution with complementary left/right chiral projectors,
   idempotence, mutual annihilation, completeness, and chirality eigenvalue theorems
+- exact one-loop inverse-coupling RG solution, squared-coupling beta function,
+  asymptotic-freedom monotonicity, arbitrary weakening, and finite Landau-pole time
 
 Run:
 
@@ -114,8 +116,8 @@ lake exe physics-model
 
 1. construct a controlled coarse-graining map feeding the now-checked metric,
    connection, Riemann, Ricci, and four-dimensional Einstein tensor pipeline;
-2. derive running couplings, the now-checked chiral/electroweak algebra, and its
-   particle assignments from microscopic modes (matrix group actions, representation
+2. derive one-loop coefficients, the now-checked running-coupling/chiral/electroweak
+   algebra, and its particle assignments from microscopic modes (matrix group actions, representation
    dimensions, charges, Yukawa rules, anomaly sums, the Higgs vacuum, photon kernel,
    and `W/Z` tree-level mass relations are checked);
 3. derive interacting field dynamics and nontrivial multiparticle unitarity beyond
