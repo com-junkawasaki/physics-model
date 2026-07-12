@@ -69,6 +69,10 @@ as open physical obligations rather than hidden as theorems.
   spectral tilts, `r=16ε`, and the falsifiable consistency relation `r=-8n_t`
 - homogeneous nonabelian curvature `F=[A,A]`, adjoint covariance, Jacobi identity,
   and the differential/second Yang--Mills Bianchi identity `D_[λ F_{μν]}=0`
+- reversible internal-clock isomorphisms with identity, inverse, composition,
+  round-trip invariance, and prediction-independent clock reparametrization
+- finite-accuracy probabilistic clock changes, additive backreaction-error bounds,
+  and recovery of exact prediction equality at zero error
 
 Run:
 
@@ -93,4 +97,5 @@ lake exe physics-model
    from microscopic quantum geometry, including greybody factors and information recovery;
 6. derive the now-checked leading slow-roll spectra and consistency relation from
    microscopic relational dynamics and confront higher-order predictions with data;
-7. construct clock equivalences for realistic interacting quantum clocks.
+7. derive the now-checked reversible clock-isomorphism hypotheses from realistic
+   interacting quantum clocks with finite accuracy and backreaction.
