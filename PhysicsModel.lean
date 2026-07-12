@@ -10,3 +10,6 @@ import PhysicsModel.StandardModelAnomaly
 import PhysicsModel.MatterGravityBridge
 import PhysicsModel.LorentzScattering
 import PhysicsModel.HiggsMechanism
+import PhysicsModel.Minkowski4
+import PhysicsModel.ElectroweakCharges
+import PhysicsModel.EinsteinTensor4

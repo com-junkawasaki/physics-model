@@ -38,6 +38,14 @@ as open physical obligations rather than hidden as theorems.
 - explicit balanced two-channel S-matrix with exact Born-probability conservation
 - complex abelian Higgs potential: positivity, gauge invariance, vacuum radius,
   nonzero vacuum, phase degeneracy, and global minimality
+- 3+1-dimensional Minkowski norm and relativistic dispersion invariance under
+  longitudinal Lorentz boosts
+- exact three-color, weak-doublet, and three-generation multiplicities
+- Standard Model electric charges, neutral Higgs vacuum, and all quark/lepton
+  Yukawa hypercharge selection rules
+- rank-two `4×4` real Einstein-sector tensors with componentwise field equations
+  derived from microscopic residual convergence
+- preservation of metric, Einstein-tensor, and stress-energy symmetry
 
 Run:
 
@@ -48,13 +56,14 @@ lake exe physics-model
 
 ## Open physics obligations
 
-1. extend the checked homogeneous scalar continuum certificate to a
-   four-dimensional tensor geometry with controlled coarse graining;
-2. construct the nonabelian Standard Model representations, couplings, chirality,
-   and full electroweak symmetry breaking from microscopic modes (the rational
-   hypercharge anomaly sums and abelian Higgs vacuum mechanism are now checked);
-3. extend the checked 1+1-dimensional Lorentz mass shell and two-channel unitary
-   scattering to interacting 3+1-dimensional quantum fields;
+1. construct the metric, connection, curvature, and controlled coarse-graining
+   map feeding the checked four-dimensional tensor residual theorem;
+2. construct explicit nonabelian matrix group actions, running couplings,
+   chirality, and full electroweak symmetry breaking from microscopic modes
+   (representation dimensions, charges, Yukawa hypercharges, anomaly sums, and
+   the abelian Higgs vacuum mechanism are now checked);
+3. extend the checked 3+1-dimensional axis-boost mass shell and two-channel
+   unitary scattering to arbitrary Lorentz transformations and interacting fields;
 4. derive amplitude selection and normalization from relational dynamics (the
    finite norm-square probability calculus itself is now checked);
 5. explain black-hole thermodynamics and evaporation;
