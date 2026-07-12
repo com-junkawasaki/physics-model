@@ -46,6 +46,9 @@ as open physical obligations rather than hidden as theorems.
 - rank-two `4×4` real Einstein-sector tensors with componentwise field equations
   derived from microscopic residual convergence
 - preservation of metric, Einstein-tensor, and stress-energy symmetry
+- actual `specialUnitaryGroup (Fin 2) ℂ` and `(Fin 3)` fundamental matrix actions
+- composition, identity, determinant-one, and Hermitian-norm preservation for
+  Higgs doublets and color triplets
 
 Run:
 
