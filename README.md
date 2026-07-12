@@ -75,6 +75,12 @@ as open physical obligations rather than hidden as theorems.
   and recovery of exact prediction equality at zero error
 - concrete convex clock-noise/backreaction model `pδ=(1-δ)p+δq` with the
   derived uniform prediction bound `|pδ-p|≤δ`
+- full rank-(1,3) Riemann covariant derivative and the differential/second
+  Bianchi identity derived in normal coordinates from commuting second derivatives
+- double contraction of the differential Bianchi identity, proving
+  `∇^μR_{μν}=½∇_νR` and `∇^μG_{μν}=0`
+- componentwise differentiated Einstein equation implies `∇^μT_{μν}=0` for
+  nonzero gravitational coupling
 
 Run:
 
