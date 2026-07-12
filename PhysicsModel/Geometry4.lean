@@ -45,6 +45,46 @@ theorem riemann_zero : riemann (0 : Connection) (0 : ConnectionDerivative) = 0 :
   funext ρ σ μ ν
   simp [riemann]
 
+/-- Vanishing torsion: symmetry of the two lower connection indices. -/
+def TorsionFree (connection : Connection) : Prop :=
+  ∀ ρ μ ν, connection ρ μ ν = connection ρ ν μ
+
+/-- Derivatives preserve the lower-index symmetry of a torsion-free connection. -/
+def DerivativeTorsionFree (derivative : ConnectionDerivative) : Prop :=
+  ∀ direction ρ μ ν, derivative direction ρ μ ν = derivative direction ρ ν μ
+
+/-- First algebraic Bianchi identity for a torsion-free connection. -/
+theorem first_bianchi (connection : Connection) (derivative : ConnectionDerivative)
+    (hconnection : TorsionFree connection)
+    (hderivative : DerivativeTorsionFree derivative)
+    (ρ σ μ ν : Index) :
+    riemann connection derivative ρ σ μ ν +
+      riemann connection derivative ρ μ ν σ +
+      riemann connection derivative ρ ν σ μ = 0 := by
+  have hBC :
+      (∑ k, connection ρ ν k * connection k σ μ) =
+        ∑ k, connection ρ ν k * connection k μ σ := by
+    apply Finset.sum_congr rfl
+    intro k _
+    rw [hconnection k σ μ]
+  have hDE :
+      (∑ k, connection ρ σ k * connection k μ ν) =
+        ∑ k, connection ρ σ k * connection k ν μ := by
+    apply Finset.sum_congr rfl
+    intro k _
+    rw [hconnection k μ ν]
+  have hFA :
+      (∑ k, connection ρ μ k * connection k σ ν) =
+        ∑ k, connection ρ μ k * connection k ν σ := by
+    apply Finset.sum_congr rfl
+    intro k _
+    rw [hconnection k σ ν]
+  unfold riemann
+  simp_rw [Finset.sum_sub_distrib]
+  rw [hderivative μ ρ ν σ, hderivative ν ρ σ μ,
+    hderivative σ ρ μ ν, hBC, hDE, hFA]
+  ring
+
 /-- Ricci contraction `R_{σν} = R^ρ_{ σ ρ ν}`. -/
 def ricci (curvature : RiemannTensor) : Metric :=
   fun σ ν => ∑ ρ, curvature ρ σ ρ ν

@@ -57,6 +57,9 @@ as open physical obligations rather than hidden as theorems.
 - explicit four-index connection curvature, Ricci contraction, scalar curvature,
   and Einstein tensor over `Fin 4`
 - Riemann last-index antisymmetry and a fully checked flat-vacuum Einstein sector
+- first algebraic Bianchi identity for torsion-free connections
+- stress-energy conservation from the Einstein equation, contracted Bianchi
+  condition, metric compatibility, and nonzero gravitational coupling
 
 Run:
 
