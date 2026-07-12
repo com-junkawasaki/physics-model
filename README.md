@@ -63,6 +63,8 @@ as open physical obligations rather than hidden as theorems.
 - component covariant derivative `∇_λT_{μν}`, inverse-metric contraction, and
   concrete linear divergence operator
 - derived flat-space contracted Bianchi identity and component stress-energy conservation
+- Schwarzschild radius, horizon area, Bekenstein--Hawking entropy, Hawking
+  temperature, first law, negative evaporation/entropy rates, and `M³` lifetime scaling
 
 Run:
 
@@ -83,6 +85,7 @@ lake exe physics-model
    unitary scattering to arbitrary Lorentz transformations and interacting fields;
 4. derive amplitude selection and normalization from relational dynamics (the
    finite norm-square probability calculus itself is now checked);
-5. explain black-hole thermodynamics and evaporation;
+5. derive the now-checked Schwarzschild thermodynamic and evaporation formulas
+   from microscopic quantum geometry, including greybody factors and information recovery;
 6. produce falsifiable cosmological predictions;
 7. construct clock equivalences for realistic interacting quantum clocks.
