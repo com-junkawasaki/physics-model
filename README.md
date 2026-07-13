@@ -106,6 +106,9 @@ as open physical obligations rather than hidden as theorems.
   asymptotic-freedom monotonicity, arbitrary weakening, and finite Landau-pole time
 - exact Standard Model one-loop beta numerators from particle content:
   `SU(3)=7`, `SU(2)=19/6`, `U(1)=-41/6`, with the corresponding UV/IR sign classification
+- bundled proof witness combining the checked Standard Model dimensions,
+  Yukawa selection rules, anomaly cancellation, electroweak breaking, and RG pattern
+- independent two-particle scattering composition with exact probability conservation
 
 Run:
 
@@ -118,12 +121,14 @@ lake exe physics-model
 
 1. construct a controlled coarse-graining map feeding the now-checked metric,
    connection, Riemann, Ricci, and four-dimensional Einstein tensor pipeline;
-2. derive the now-checked one-loop coefficients, running-coupling/chiral/electroweak
-   algebra, and its particle assignments from microscopic modes (matrix group actions, representation
-   dimensions, charges, Yukawa rules, anomaly sums, the Higgs vacuum, photon kernel,
-   and `W/Z` tree-level mass relations are checked);
+2. derive the now-checked one-loop coefficients, bundled Standard Model algebra,
+   running-coupling/chiral/electroweak algebra, and its particle assignments from
+   microscopic modes (matrix group actions, representation dimensions, charges,
+   Yukawa rules, anomaly sums, the Higgs vacuum, photon kernel, and `W/Z` tree-level
+   mass relations are checked);
 3. derive interacting field dynamics and nontrivial multiparticle unitarity beyond
-   the now-checked Lorentz-covariant finite-particle kinematics and `2→2` invariant amplitudes;
+   the now-checked Lorentz-covariant finite-particle kinematics, `2→2` invariant amplitudes,
+   and independent two-particle scattering composition;
 4. derive branch symmetry, amplitude selection, normalization, and response continuity
    from relational dynamics (given continuity, the extension from rational symmetric
    branches to arbitrary normalized amplitudes is now checked);

@@ -39,3 +39,5 @@ import PhysicsModel.ElectroweakBreaking
 import PhysicsModel.Chirality
 import PhysicsModel.RunningCoupling
 import PhysicsModel.StandardModelRunning
+import PhysicsModel.StandardModelBundle
+import PhysicsModel.MultiParticleUnitarity
