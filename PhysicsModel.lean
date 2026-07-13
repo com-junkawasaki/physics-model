@@ -41,3 +41,4 @@ import PhysicsModel.RunningCoupling
 import PhysicsModel.StandardModelRunning
 import PhysicsModel.StandardModelBundle
 import PhysicsModel.MultiParticleUnitarity
+import PhysicsModel.InteractingScattering

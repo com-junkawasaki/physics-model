@@ -109,6 +109,7 @@ as open physical obligations rather than hidden as theorems.
 - bundled proof witness combining the checked Standard Model dimensions,
   Yukawa selection rules, anomaly cancellation, electroweak breaking, and RG pattern
 - independent two-particle scattering composition with exact probability conservation
+- finite-family multiparticle unitarity and Lorentz-invariant `s,t,u` scattering weights
 
 Run:
 
@@ -128,7 +129,8 @@ lake exe physics-model
    mass relations are checked);
 3. derive interacting field dynamics and nontrivial multiparticle unitarity beyond
    the now-checked Lorentz-covariant finite-particle kinematics, `2→2` invariant amplitudes,
-   and independent two-particle scattering composition;
+   independent two-particle scattering composition, and finite-family Lorentz-invariant
+   scattering weights;
 4. derive branch symmetry, amplitude selection, normalization, and response continuity
    from relational dynamics (given continuity, the extension from rational symmetric
    branches to arbitrary normalized amplitudes is now checked);
