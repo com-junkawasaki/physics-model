@@ -112,6 +112,7 @@ as open physical obligations rather than hidden as theorems.
 - finite-family multiparticle unitarity and Lorentz-invariant `s,t,u` scattering weights
 - finite families of general `n→m` scattering processes with conserved total four-momentum
 - frame-invariant Born measurements for finite families of processes under scalar amplitudes
+- channel-wise phase twists that preserve family Born normalization and probabilities
 
 Run:
 
@@ -133,7 +134,7 @@ lake exe physics-model
    the now-checked Lorentz-covariant finite-particle kinematics, `2→2` invariant amplitudes,
    independent two-particle scattering composition, and finite-family Lorentz-invariant
    scattering weights, including finite families of general `n→m` processes and
-   frame-invariant Born measurements;
+   frame-invariant Born measurements with channel-wise phase twists;
 4. derive branch symmetry, amplitude selection, normalization, and response continuity
    from relational dynamics (given continuity, the extension from rational symmetric
    branches to arbitrary normalized amplitudes is now checked);

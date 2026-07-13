@@ -122,6 +122,17 @@ variable {Index : Type u} [Fintype Index]
 structure ChannelFamily (Index : Type u) [Fintype Index] where
   channel : Index → TwoChannel
 
+/-- Channel-wise unit phases. -/
+structure PhaseFamily (Index : Type u) [Fintype Index] where
+  phase : Index → ℂ
+  unit : ∀ i, Complex.normSq (phase i) = 1
+
+/-- Apply a phase twist to every channel. -/
+noncomputable def phaseTwist {Index : Type u} [Fintype Index]
+    (phased : PhaseFamily Index) (family : ChannelFamily Index) : ChannelFamily Index where
+  channel := fun i =>
+    ⟨phased.phase i * (family.channel i).first, phased.phase i * (family.channel i).second⟩
+
 /-- Total Born probability of the family is the sum of the channel probabilities. -/
 noncomputable def familyProbability {Index : Type u} [Fintype Index]
     (family : ChannelFamily Index) : ℝ :=
@@ -138,6 +149,13 @@ theorem familyProbability_conserved {Index : Type u} [Fintype Index]
     familyProbability (familyTransfer family) = familyProbability family := by
   unfold familyProbability familyTransfer
   simp [Scattering.scatter_probability_conserved]
+
+/-- Channel phases do not change the total probability. -/
+theorem familyProbability_phaseTwist {Index : Type u} [Fintype Index]
+    (phased : PhaseFamily Index) (family : ChannelFamily Index) :
+    familyProbability (phaseTwist phased family) = familyProbability family := by
+  unfold familyProbability phaseTwist
+  simp [Scattering.totalProbability, phased.unit, mul_comm, mul_left_comm, mul_assoc]
 
 /-- If the family is normalized, then the indexed channel measurement is a Born measurement. -/
 noncomputable def measurement {Index : Type u} [Fintype Index] (family : ChannelFamily Index)
@@ -165,6 +183,15 @@ theorem transferred_measurement_probability_sum {Index : Type u} [Fintype Index]
         (by simpa [familyProbability_conserved] using normalized)).probability outcome = 1 :=
   (measurement (familyTransfer family)
       (by simpa [familyProbability_conserved] using normalized)).probability_normalized
+
+/-- A phase twist on the channels leaves the measurement normalization intact. -/
+theorem phaseTwist_measurement_probability_sum {Index : Type u} [Fintype Index]
+    (phased : PhaseFamily Index) (family : ChannelFamily Index)
+    (normalized : familyProbability family = 1) :
+    ∑ outcome, (measurement (phaseTwist phased family)
+        (by simpa [familyProbability_phaseTwist] using normalized)).probability outcome = 1 :=
+  (measurement (phaseTwist phased family)
+      (by simpa [familyProbability_phaseTwist] using normalized)).probability_normalized
 
 end ChannelTransfer
 
