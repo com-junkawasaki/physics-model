@@ -47,6 +47,12 @@ def disjointSum {J : Type u} [Fintype J] (family : ProcessFamily Index) (other :
     ProcessFamily (Index ⊕ J) where
   event := Sum.elim family.event other.event
 
+/-- Lorentz transform commutes with relabeling. -/
+theorem transform_relabel {J : Type u} [Fintype J] (family : ProcessFamily Index)
+    (e : Index ≃ J) (lorentz : Transform) :
+    relabel (transform family lorentz) e = transform (relabel family e) lorentz := by
+  rfl
+
 /-- If the amplitude depends only on `s,t,u`, the total Born weight is frame invariant. -/
 theorem totalWeight_invariant (family : ProcessFamily Index) (amp : TwoToTwo → ℂ)
     (lorentz : Transform)
@@ -182,6 +188,46 @@ theorem measurement_normalized_of_s_t_u (family : ProcessFamily Index)
     (normalized : totalWeight family (fun event => amp event.s event.t event.u) = 1) :
     ∑ i, (measurement family (fun event => amp event.s event.t event.u) normalized).probability i = 1 :=
   (measurement family (fun event => amp event.s event.t event.u) normalized).probability_normalized
+
+/-- Relabeling preserves the probability assigned to the corresponding event. -/
+theorem measurement_relabel_probability {J : Type u} [Fintype J]
+    (family : ProcessFamily Index) (amp : TwoToTwo → ℂ) (e : Index ≃ J)
+    (normalized : totalWeight family amp = 1) (j : J) :
+    let m : BornMeasurement :=
+      measurement (relabel family e) amp
+        (by
+          simpa [totalWeight_relabel (family := family) (amp := amp) e] using normalized)
+    m.probability j =
+      (measurement family amp normalized).probability (e.symm j) := by
+  dsimp
+  simp [measurement, relabel, BornMeasurement.probability,
+    totalWeight_relabel (family := family) (amp := amp) e]
+
+/-- The disjoint union family preserves the left-hand Born probabilities pointwise. -/
+theorem measurement_disjointSum_inl {J : Type u} [Fintype J]
+    (family : ProcessFamily Index) (other : ProcessFamily J) (amp : TwoToTwo → ℂ)
+    (normalized : totalWeight family amp + totalWeight other amp = 1) (i : Index) :
+    let m : BornMeasurement :=
+      measurement (disjointSum family other) amp
+        (by simpa [totalWeight_disjointSum] using normalized)
+    m.probability (Sum.inl i) =
+      Complex.normSq (amp (family.event i)) := by
+  dsimp
+  simp [measurement, disjointSum, BornMeasurement.probability,
+    totalWeight_disjointSum, normalized]
+
+/-- The disjoint union family preserves the right-hand Born probabilities pointwise. -/
+theorem measurement_disjointSum_inr {J : Type u} [Fintype J]
+    (family : ProcessFamily Index) (other : ProcessFamily J) (amp : TwoToTwo → ℂ)
+    (normalized : totalWeight family amp + totalWeight other amp = 1) (j : J) :
+    let m : BornMeasurement :=
+      measurement (disjointSum family other) amp
+        (by simpa [totalWeight_disjointSum] using normalized)
+    m.probability (Sum.inr j) =
+      Complex.normSq (amp (other.event j)) := by
+  dsimp
+  simp [measurement, disjointSum, BornMeasurement.probability,
+    totalWeight_disjointSum, normalized]
 
 end ProcessFamily
 
