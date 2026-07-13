@@ -1,3 +1,5 @@
+import PhysicsModel.Born
+import PhysicsModel.LorentzScattering
 import PhysicsModel.RelativisticScattering
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
@@ -14,6 +16,7 @@ namespace PhysicsModel.ManyBodyScattering
 open scoped BigOperators
 open PhysicsModel.RelativisticScattering
 open PhysicsModel.GeneralLorentz4
+open PhysicsModel.Scattering
 
 universe u v w
 
@@ -73,5 +76,83 @@ theorem transform_preserves_conservation
   rw [totalIncoming_transform, totalOutgoing_transform, totalMomentum_conserved]
 
 end ProcessFamily
+
+/-! A finite family of processes can be viewed directly as a Born measurement. -/
+section BornFamily
+
+variable {Index : Type u} {Incoming : Type v} {Outgoing : Type w}
+  [Fintype Index] [Fintype Incoming] [Fintype Outgoing]
+
+/-- A finite family of processes with a normalized amplitude on each process. -/
+noncomputable def processMeasurement (family : ProcessFamily Index Incoming Outgoing)
+    (amp : Process Incoming Outgoing → ℂ)
+    (normalized : ∑ i, Complex.normSq (amp (family.process i)) = 1) : BornMeasurement where
+  Outcome := Index
+  finiteOutcome := inferInstance
+  amplitude := fun i => amp (family.process i)
+  normalized := normalized
+
+/-- The process family directly yields a normalized Born measurement. -/
+theorem processMeasurement_probability_sum (family : ProcessFamily Index Incoming Outgoing)
+    (amp : Process Incoming Outgoing → ℂ)
+    (normalized : ∑ i, Complex.normSq (amp (family.process i)) = 1) :
+    ∑ i, (processMeasurement family amp normalized).probability i = 1 :=
+  (processMeasurement family amp normalized).probability_normalized
+
+end BornFamily
+
+namespace ChannelTransfer
+
+variable {Index : Type u} [Fintype Index]
+
+/-- A finite family of independent two-channel scattering systems. -/
+structure ChannelFamily (Index : Type u) [Fintype Index] where
+  channel : Index → TwoChannel
+
+/-- Total Born probability of the family is the sum of the channel probabilities. -/
+noncomputable def familyProbability {Index : Type u} [Fintype Index]
+    (family : ChannelFamily Index) : ℝ :=
+  ∑ i, Scattering.totalProbability (family.channel i)
+
+/-- A concrete unitary transfer on every channel in the family. -/
+noncomputable def familyTransfer {Index : Type u} [Fintype Index] (family : ChannelFamily Index) :
+    ChannelFamily Index where
+  channel := fun i => Scattering.scatter (family.channel i)
+
+/-- Independent channel transfer preserves the total probability. -/
+theorem familyProbability_conserved {Index : Type u} [Fintype Index]
+    (family : ChannelFamily Index) :
+    familyProbability (familyTransfer family) = familyProbability family := by
+  unfold familyProbability familyTransfer
+  simp [Scattering.scatter_probability_conserved]
+
+/-- If the family is normalized, then the indexed channel measurement is a Born measurement. -/
+noncomputable def measurement {Index : Type u} [Fintype Index] (family : ChannelFamily Index)
+    (normalized : familyProbability family = 1) : BornMeasurement where
+  Outcome := Index × Bool
+  finiteOutcome := inferInstance
+  amplitude := fun
+    | (i, false) => (family.channel i).first
+    | (i, true) => (family.channel i).second
+  normalized := by
+    rw [Fintype.sum_prod_type]
+    simpa [familyProbability, Scattering.totalProbability, add_comm, add_left_comm, add_assoc]
+      using normalized
+
+theorem measurement_probability_sum {Index : Type u} [Fintype Index]
+    (family : ChannelFamily Index)
+    (normalized : familyProbability family = 1) :
+    ∑ outcome, (measurement family normalized).probability outcome = 1 :=
+  (measurement family normalized).probability_normalized
+
+theorem transferred_measurement_probability_sum {Index : Type u} [Fintype Index]
+    (family : ChannelFamily Index)
+    (normalized : familyProbability family = 1) :
+    ∑ outcome, (measurement (familyTransfer family)
+        (by simpa [familyProbability_conserved] using normalized)).probability outcome = 1 :=
+  (measurement (familyTransfer family)
+      (by simpa [familyProbability_conserved] using normalized)).probability_normalized
+
+end ChannelTransfer
 
 end PhysicsModel.ManyBodyScattering
