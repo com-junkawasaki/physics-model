@@ -129,6 +129,24 @@ theorem u1_betaCoefficient_negative : betaCoefficient u1BetaNumerator < 0 := by
   apply betaCoefficient_neg
   norm_num
 
+/-- The `SU(3)` coefficient in `RunningCoupling` form is `7 / (8 π^2)`. -/
+theorem su3_betaCoefficient_value :
+    betaCoefficient su3BetaNumerator = 7 / (8 * Real.pi ^ 2) := by
+  rw [su3_beta_numerator, betaCoefficient]
+  norm_num
+
+/-- The `SU(2)` coefficient in `RunningCoupling` form is `(19/6) / (8 π^2)`. -/
+theorem su2_betaCoefficient_value :
+    betaCoefficient su2BetaNumerator = (19 / 6) / (8 * Real.pi ^ 2) := by
+  rw [su2_beta_numerator, betaCoefficient]
+  norm_num
+
+/-- The `U(1)` coefficient in `RunningCoupling` form is `(-41/6) / (8 π^2)`. -/
+theorem u1_betaCoefficient_value :
+    betaCoefficient u1BetaNumerator = (-41 / 6) / (8 * Real.pi ^ 2) := by
+  rw [u1_beta_numerator, betaCoefficient]
+  norm_num
+
 /-- The `SU(3)` running coupling decreases with scale whenever the denominator stays positive. -/
 theorem su3_asymptotic_freedom
     {initialInverse t₁ t₂ : ℝ}
@@ -163,5 +181,20 @@ theorem u1_landau_pole_denominator_zero {initialInverse : ℝ} :
     RunningCoupling.inverseCouplingSq initialInverse (betaCoefficient u1BetaNumerator)
       (RunningCoupling.landauPoleTime initialInverse (betaCoefficient u1BetaNumerator)) = 0 := by
   exact RunningCoupling.landauPole_denominator_zero u1_betaCoefficient_negative
+
+/-- The Standard Model one-loop RG pattern: two asymptotically free couplings and one Landau-pole branch. -/
+theorem standardModel_one_loop_rg_pattern :
+    (0 < betaCoefficient su3BetaNumerator) ∧
+    (0 < betaCoefficient su2BetaNumerator) ∧
+    (betaCoefficient u1BetaNumerator < 0) := by
+  exact ⟨su3_betaCoefficient_positive, su2_betaCoefficient_positive,
+    u1_betaCoefficient_negative⟩
+
+/-- The exact one-loop coefficient values are fixed by the checked particle content. -/
+theorem standardModel_one_loop_coefficients :
+    betaCoefficient su3BetaNumerator = 7 / (8 * Real.pi ^ 2) ∧
+    betaCoefficient su2BetaNumerator = (19 / 6) / (8 * Real.pi ^ 2) ∧
+    betaCoefficient u1BetaNumerator = (-41 / 6) / (8 * Real.pi ^ 2) := by
+  exact ⟨su3_betaCoefficient_value, su2_betaCoefficient_value, u1_betaCoefficient_value⟩
 
 end PhysicsModel.StandardModelRunning
