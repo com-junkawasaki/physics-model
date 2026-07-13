@@ -143,6 +143,23 @@ theorem processMeasurement_probability_phaseTwist
       Complex.normSq (amp (family.process i)) := by
   simp [processPhaseMeasurement, BornMeasurement.probability, phased.unit]
 
+/-- If the amplitude is Lorentz-scalar, phase-twisted process probabilities are frame invariant. -/
+theorem processPhaseMeasurement_probability_invariant
+    {Index : Type u} {Incoming : Type v} {Outgoing : Type w}
+    [Fintype Index] [Fintype Incoming] [Fintype Outgoing]
+    (phased : ProcessPhaseFamily Index)
+    (family : ProcessFamily Index Incoming Outgoing)
+    (amp : Process Incoming Outgoing → ℂ) (lorentz : Transform)
+    (scalarAmp : ∀ process, amp (process.transform lorentz) = amp process)
+    (normalized : ∑ i, Complex.normSq (amp (family.process i)) = 1)
+    (i : Index) :
+    (processPhaseMeasurement phased (family.transform lorentz) amp
+        (by
+          simpa [ProcessFamily.transform, scalarAmp] using normalized)).probability i =
+      (processPhaseMeasurement phased family amp normalized).probability i := by
+  simp [processPhaseMeasurement, BornMeasurement.probability, ProcessFamily.transform, scalarAmp,
+    phased.unit]
+
 /-- If the process amplitude is Lorentz-scalar, each Born probability is frame invariant. -/
 theorem processMeasurement_probability_invariant
     (family : ProcessFamily Index Incoming Outgoing)

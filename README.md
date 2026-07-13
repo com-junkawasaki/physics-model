@@ -114,6 +114,7 @@ as open physical obligations rather than hidden as theorems.
 - frame-invariant Born measurements for finite families of processes under scalar amplitudes
 - channel-wise phase twists that preserve family Born normalization and probabilities
 - phase-twisted process Born measurements with pointwise probability invariance
+- Lorentz-invariant phase-twisted process Born measurements
 - interacting scattering families with phase-twisted Born measurements
 - Lorentz-invariant phase-twisted interacting scattering distributions
 - two-channel interference scattering with exact probability conservation
@@ -138,8 +139,8 @@ lake exe physics-model
    the now-checked Lorentz-covariant finite-particle kinematics, `2→2` invariant amplitudes,
    independent two-particle scattering composition, and finite-family Lorentz-invariant
    scattering weights, including finite families of general `n→m` processes,
-   frame-invariant Born measurements with channel-wise phase twists, phase-twisted
-   process Born measurements, and two-channel interference conservation;
+   frame-invariant Born measurements with channel-wise phase twists, Lorentz-invariant
+   phase-twisted process Born measurements, and two-channel interference conservation;
 4. derive branch symmetry, amplitude selection, normalization, and response continuity
    from relational dynamics (given continuity, the extension from rational symmetric
    branches to arbitrary normalized amplitudes is now checked);
