@@ -110,6 +110,7 @@ as open physical obligations rather than hidden as theorems.
   Yukawa selection rules, anomaly cancellation, electroweak breaking, and RG pattern
 - independent two-particle scattering composition with exact probability conservation
 - finite-family multiparticle unitarity and Lorentz-invariant `s,t,u` scattering weights
+- finite families of general `n→m` scattering processes with conserved total four-momentum
 
 Run:
 
@@ -130,7 +131,7 @@ lake exe physics-model
 3. derive interacting field dynamics and nontrivial multiparticle unitarity beyond
    the now-checked Lorentz-covariant finite-particle kinematics, `2→2` invariant amplitudes,
    independent two-particle scattering composition, and finite-family Lorentz-invariant
-   scattering weights;
+   scattering weights, including finite families of general `n→m` processes;
 4. derive branch symmetry, amplitude selection, normalization, and response continuity
    from relational dynamics (given continuity, the extension from rational symmetric
    branches to arbitrary normalized amplitudes is now checked);

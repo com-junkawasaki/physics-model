@@ -42,3 +42,4 @@ import PhysicsModel.StandardModelRunning
 import PhysicsModel.StandardModelBundle
 import PhysicsModel.MultiParticleUnitarity
 import PhysicsModel.InteractingScattering
+import PhysicsModel.ManyBodyScattering
