@@ -118,6 +118,7 @@ as open physical obligations rather than hidden as theorems.
 - interacting scattering families with phase-twisted Born measurements
 - Lorentz-invariant phase-twisted interacting scattering distributions
 - two-channel interference scattering with exact probability conservation
+- `2→2` interacting families lifted into general `n→m` process families
 
 Run:
 
@@ -140,7 +141,8 @@ lake exe physics-model
    independent two-particle scattering composition, and finite-family Lorentz-invariant
    scattering weights, including finite families of general `n→m` processes,
    frame-invariant Born measurements with channel-wise phase twists, Lorentz-invariant
-   phase-twisted process Born measurements, and two-channel interference conservation;
+   phase-twisted process Born measurements, `2→2`-to-`n→m` lifting, and two-channel
+   interference conservation;
 4. derive branch symmetry, amplitude selection, normalization, and response continuity
    from relational dynamics (given continuity, the extension from rational symmetric
    branches to arbitrary normalized amplitudes is now checked);

@@ -37,6 +37,16 @@ noncomputable def totalWeight (family : ProcessFamily Index) (amp : TwoToTwo →
 def transform (family : ProcessFamily Index) (lorentz : Transform) : ProcessFamily Index where
   event := fun i => (family.event i).transform lorentz
 
+/-- Relabel a scattering family by an equivalence of index types. -/
+def relabel {J : Type u} [Fintype J] (family : ProcessFamily Index) (e : Index ≃ J) :
+    ProcessFamily J where
+  event := fun j => family.event (e.symm j)
+
+/-- Combine two scattering families into a disjoint union family. -/
+def disjointSum {J : Type u} [Fintype J] (family : ProcessFamily Index) (other : ProcessFamily J) :
+    ProcessFamily (Index ⊕ J) where
+  event := Sum.elim family.event other.event
+
 /-- If the amplitude depends only on `s,t,u`, the total Born weight is frame invariant. -/
 theorem totalWeight_invariant (family : ProcessFamily Index) (amp : TwoToTwo → ℂ)
     (lorentz : Transform)
@@ -44,6 +54,25 @@ theorem totalWeight_invariant (family : ProcessFamily Index) (amp : TwoToTwo →
     totalWeight (family.transform lorentz) amp = totalWeight family amp := by
   unfold totalWeight amplitude transform
   simp [scalarAmp]
+
+/-- Relabeling a family does not change its total Born weight. -/
+theorem totalWeight_relabel {J : Type u} [Fintype J] (family : ProcessFamily Index)
+    (amp : TwoToTwo → ℂ) (e : Index ≃ J) :
+    totalWeight (family.relabel e) amp = totalWeight family amp := by
+  unfold totalWeight amplitude relabel
+  simpa using
+    (Fintype.sum_equiv e.symm
+      (fun j : J => Complex.normSq (amp (family.event (e.symm j))))
+      (fun i : Index => Complex.normSq (amp (family.event i)))
+      (by intro i; rfl))
+
+/-- The disjoint union family has total Born weight equal to the sum of parts. -/
+theorem totalWeight_disjointSum {J : Type u} [Fintype J]
+    (family : ProcessFamily Index) (other : ProcessFamily J) (amp : TwoToTwo → ℂ) :
+    totalWeight (family.disjointSum other) amp =
+      totalWeight family amp + totalWeight other amp := by
+  unfold totalWeight amplitude disjointSum
+  simp [Fintype.sum_sum_type]
 
 /-- Channel-wise unit phases for a finite interacting scattering family. -/
 structure PhaseFamily (Index : Type u) [Fintype Index] where

@@ -1,4 +1,5 @@
 import PhysicsModel.Born
+import PhysicsModel.InteractingScattering
 import PhysicsModel.LorentzScattering
 import PhysicsModel.RelativisticScattering
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
@@ -15,6 +16,7 @@ namespace PhysicsModel.ManyBodyScattering
 
 open scoped BigOperators
 open PhysicsModel.RelativisticScattering
+open PhysicsModel.InteractingScattering
 open PhysicsModel.GeneralLorentz4
 open PhysicsModel.Scattering
 
@@ -285,5 +287,35 @@ theorem interferenceMeasurement_probability_sum
         normalized)).probability_normalized
 
 end ChannelTransfer
+
+namespace InteractingBridge
+
+variable {Index : Type u} [Fintype Index]
+
+/-- A `2 → 2` scattering event as a special case of the general `n → m` process type. -/
+noncomputable def toProcess (event : TwoToTwo) : Process (Fin 2) (Fin 2) where
+  incoming := fun
+    | 0 => event.p₁
+    | 1 => event.p₂
+  outgoing := fun
+    | 0 => event.p₃
+    | 1 => event.p₄
+  conserves := by
+    simpa [RelativisticScattering.totalMomentum, Fin.sum_univ_two] using event.conserves
+
+/-- A finite interacting scattering family lifts to a finite many-body family. -/
+noncomputable def lift (family : PhysicsModel.InteractingScattering.ProcessFamily Index) :
+    ProcessFamily Index (Fin 2) (Fin 2) where
+  process := fun i => toProcess (family.event i)
+
+/-- Lifting preserves momentum conservation process-by-process. -/
+theorem lift_conserves (family : PhysicsModel.InteractingScattering.ProcessFamily Index)
+    (i : Index) :
+    totalMomentum ((lift family).process i).incoming =
+      totalMomentum ((lift family).process i).outgoing := by
+  simpa [lift, toProcess, RelativisticScattering.totalMomentum, Fin.sum_univ_two]
+    using ((family.event i).conserves)
+
+end InteractingBridge
 
 end PhysicsModel.ManyBodyScattering
