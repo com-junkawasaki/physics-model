@@ -99,6 +99,19 @@ theorem processMeasurement_probability_sum (family : ProcessFamily Index Incomin
     ∑ i, (processMeasurement family amp normalized).probability i = 1 :=
   (processMeasurement family amp normalized).probability_normalized
 
+/-- If the process amplitude is Lorentz-scalar, each Born probability is frame invariant. -/
+theorem processMeasurement_probability_invariant
+    (family : ProcessFamily Index Incoming Outgoing)
+    (amp : Process Incoming Outgoing → ℂ) (lorentz : Transform)
+    (scalarAmp : ∀ process, amp (process.transform lorentz) = amp process)
+    (normalized : ∑ i, Complex.normSq (amp (family.process i)) = 1)
+    (i : Index) :
+    (processMeasurement (family.transform lorentz) amp
+        (by
+          simpa [ProcessFamily.transform, scalarAmp] using normalized)).probability i =
+      (processMeasurement family amp normalized).probability i := by
+  simp [processMeasurement, BornMeasurement.probability, ProcessFamily.transform, scalarAmp]
+
 end BornFamily
 
 namespace ChannelTransfer
