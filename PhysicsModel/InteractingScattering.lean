@@ -76,6 +76,25 @@ theorem probability_invariant_of_s_t_u (family : ProcessFamily Index)
   simp [measurement, BornMeasurement.probability, transform,
     TwoToTwo.invariantAmplitude]
 
+/-- The entire finite Born distribution is unchanged by a common Lorentz frame. -/
+theorem measurement_distribution_invariant_of_s_t_u (family : ProcessFamily Index)
+    (amp : ℝ → ℝ → ℝ → ℂ) (lorentz : Transform)
+    (normalized : totalWeight family (fun event => amp event.s event.t event.u) = 1) :
+    ∀ i, (measurement (family.transform lorentz) (fun event => amp event.s event.t event.u)
+        (by
+          simpa [totalWeight_invariant_of_s_t_u (family := family) (amp := amp)
+            (lorentz := lorentz)] using normalized)).probability i =
+      (measurement family (fun event => amp event.s event.t event.u) normalized).probability i := by
+  intro i
+  exact probability_invariant_of_s_t_u family amp lorentz i normalized
+
+/-- A normalized invariant family gives a concrete Born measurement. -/
+theorem measurement_normalized_of_s_t_u (family : ProcessFamily Index)
+    (amp : ℝ → ℝ → ℝ → ℂ)
+    (normalized : totalWeight family (fun event => amp event.s event.t event.u) = 1) :
+    ∑ i, (measurement family (fun event => amp event.s event.t event.u) normalized).probability i = 1 :=
+  (measurement family (fun event => amp event.s event.t event.u) normalized).probability_normalized
+
 end ProcessFamily
 
 end PhysicsModel.InteractingScattering
