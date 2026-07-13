@@ -114,6 +114,7 @@ as open physical obligations rather than hidden as theorems.
 - frame-invariant Born measurements for finite families of processes under scalar amplitudes
 - channel-wise phase twists that preserve family Born normalization and probabilities
 - phase-twisted process Born measurements with pointwise probability invariance
+- interacting scattering families with phase-twisted Born measurements
 - two-channel interference scattering with exact probability conservation
 
 Run:

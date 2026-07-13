@@ -45,6 +45,36 @@ theorem totalWeight_invariant (family : ProcessFamily Index) (amp : TwoToTwo →
   unfold totalWeight amplitude transform
   simp [scalarAmp]
 
+/-- Channel-wise unit phases for a finite interacting scattering family. -/
+structure PhaseFamily (Index : Type u) [Fintype Index] where
+  phase : Index → ℂ
+  unit : ∀ i, Complex.normSq (phase i) = 1
+
+/-- A phase-twisted Born measurement on an interacting scattering family. -/
+noncomputable def phaseTwistedMeasurement (family : ProcessFamily Index)
+    (phased : PhaseFamily Index) (amp : TwoToTwo → ℂ)
+    (normalized : totalWeight family amp = 1) : BornMeasurement where
+  Outcome := Index
+  finiteOutcome := inferInstance
+  amplitude := fun i => phased.phase i * amp (family.event i)
+  normalized := by
+    simpa [totalWeight, Complex.normSq_mul, phased.unit] using normalized
+
+/-- Phase twists preserve the total Born weight of an interacting scattering family. -/
+theorem phaseTwistedMeasurement_probability_sum (family : ProcessFamily Index)
+    (phased : PhaseFamily Index) (amp : TwoToTwo → ℂ)
+    (normalized : totalWeight family amp = 1) :
+    ∑ i, (phaseTwistedMeasurement family phased amp normalized).probability i = 1 :=
+  (phaseTwistedMeasurement family phased amp normalized).probability_normalized
+
+/-- A phase twist does not change any individual Born probability. -/
+theorem phaseTwistedMeasurement_probability (family : ProcessFamily Index)
+    (phased : PhaseFamily Index) (amp : TwoToTwo → ℂ)
+    (normalized : totalWeight family amp = 1) (i : Index) :
+    (phaseTwistedMeasurement family phased amp normalized).probability i =
+      Complex.normSq (amp (family.event i)) := by
+  simp [phaseTwistedMeasurement, BornMeasurement.probability, phased.unit]
+
 /-- A finite set of invariant scattering channels keeps its total Born weight unchanged. -/
 theorem totalWeight_invariant_of_s_t_u (family : ProcessFamily Index)
     (amp : ℝ → ℝ → ℝ → ℂ) (lorentz : Transform) :
