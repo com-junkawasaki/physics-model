@@ -218,7 +218,7 @@ theorem familyProbability_phaseTwist {Index : Type u} [Fintype Index]
     (phased : PhaseFamily Index) (family : ChannelFamily Index) :
     familyProbability (phaseTwist phased family) = familyProbability family := by
   unfold familyProbability phaseTwist
-  simp [Scattering.totalProbability, phased.unit, mul_comm, mul_left_comm, mul_assoc]
+  simp [Scattering.totalProbability, phased.unit]
 
 /-- If the family is normalized, then the indexed channel measurement is a Born measurement. -/
 noncomputable def measurement {Index : Type u} [Fintype Index] (family : ChannelFamily Index)
