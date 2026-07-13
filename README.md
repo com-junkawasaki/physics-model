@@ -115,6 +115,7 @@ as open physical obligations rather than hidden as theorems.
 - channel-wise phase twists that preserve family Born normalization and probabilities
 - phase-twisted process Born measurements with pointwise probability invariance
 - interacting scattering families with phase-twisted Born measurements
+- Lorentz-invariant phase-twisted interacting scattering distributions
 - two-channel interference scattering with exact probability conservation
 
 Run:

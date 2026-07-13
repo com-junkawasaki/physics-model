@@ -86,6 +86,35 @@ theorem totalWeight_invariant_of_s_t_u (family : ProcessFamily Index)
   intro event lorentz'
   simpa using TwoToTwo.invariantAmplitude amp event lorentz'
 
+/-- If the amplitude depends only on `s,t,u`, phase-twisted probabilities are Lorentz invariant. -/
+theorem phaseTwistedMeasurement_probability_invariant_of_s_t_u (family : ProcessFamily Index)
+    (phased : PhaseFamily Index) (amp : ℝ → ℝ → ℝ → ℂ) (lorentz : Transform) (i : Index)
+    (normalized : totalWeight family (fun event => amp event.s event.t event.u) = 1) :
+    (phaseTwistedMeasurement (family.transform lorentz) phased
+        (fun event => amp event.s event.t event.u)
+        (by
+          simpa [totalWeight_invariant_of_s_t_u (family := family) (amp := amp)
+            (lorentz := lorentz)] using normalized)).probability i =
+      (phaseTwistedMeasurement family phased
+        (fun event => amp event.s event.t event.u) normalized).probability i := by
+  simp [phaseTwistedMeasurement, BornMeasurement.probability, transform,
+    phased.unit, TwoToTwo.invariantAmplitude]
+
+/-- The entire phase-twisted Born distribution is unchanged by a common Lorentz frame. -/
+theorem phaseTwistedMeasurement_distribution_invariant_of_s_t_u (family : ProcessFamily Index)
+    (phased : PhaseFamily Index) (amp : ℝ → ℝ → ℝ → ℂ) (lorentz : Transform)
+    (normalized : totalWeight family (fun event => amp event.s event.t event.u) = 1) :
+    ∀ i, (phaseTwistedMeasurement (family.transform lorentz) phased
+        (fun event => amp event.s event.t event.u)
+        (by
+          simpa [totalWeight_invariant_of_s_t_u (family := family) (amp := amp)
+            (lorentz := lorentz)] using normalized)).probability i =
+      (phaseTwistedMeasurement family phased
+        (fun event => amp event.s event.t event.u) normalized).probability i := by
+  intro i
+  exact phaseTwistedMeasurement_probability_invariant_of_s_t_u family phased amp lorentz i
+    normalized
+
 /-- A finite family of scattering channels can be regarded as a Born measurement. -/
 noncomputable def measurement (family : ProcessFamily Index) (amp : TwoToTwo → ℂ)
     (normalized : totalWeight family amp = 1) : BornMeasurement where
