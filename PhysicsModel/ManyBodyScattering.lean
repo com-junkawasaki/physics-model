@@ -99,6 +99,50 @@ theorem processMeasurement_probability_sum (family : ProcessFamily Index Incomin
     ∑ i, (processMeasurement family amp normalized).probability i = 1 :=
   (processMeasurement family amp normalized).probability_normalized
 
+/-- Channel-wise unit phases for a process family. -/
+structure ProcessPhaseFamily
+    (Index : Type u) [Fintype Index] where
+  phase : Index → ℂ
+  unit : ∀ i, Complex.normSq (phase i) = 1
+
+/-- A phase-twisted Born measurement on a process family. -/
+noncomputable def processPhaseMeasurement
+    {Index : Type u} {Incoming : Type v} {Outgoing : Type w}
+    [Fintype Index] [Fintype Incoming] [Fintype Outgoing]
+    (phased : ProcessPhaseFamily Index)
+    (family : ProcessFamily Index Incoming Outgoing)
+    (amp : Process Incoming Outgoing → ℂ)
+    (normalized : ∑ i, Complex.normSq (amp (family.process i)) = 1) : BornMeasurement where
+  Outcome := Index
+  finiteOutcome := inferInstance
+  amplitude := fun i => phased.phase i * amp (family.process i)
+  normalized := by
+    simp [Complex.normSq_mul, phased.unit, normalized]
+
+/-- Phase twists preserve the total Born weight of a process family. -/
+theorem processPhaseMeasurement_probability_sum
+    {Index : Type u} {Incoming : Type v} {Outgoing : Type w}
+    [Fintype Index] [Fintype Incoming] [Fintype Outgoing]
+    (phased : ProcessPhaseFamily Index)
+    (family : ProcessFamily Index Incoming Outgoing)
+    (amp : Process Incoming Outgoing → ℂ)
+    (normalized : ∑ i, Complex.normSq (amp (family.process i)) = 1) :
+    ∑ i, (processPhaseMeasurement phased family amp normalized).probability i = 1 :=
+  (processPhaseMeasurement phased family amp normalized).probability_normalized
+
+/-- A phase twist does not change the probability of any process outcome. -/
+theorem processMeasurement_probability_phaseTwist
+    {Index : Type u} {Incoming : Type v} {Outgoing : Type w}
+    [Fintype Index] [Fintype Incoming] [Fintype Outgoing]
+    (phased : ProcessPhaseFamily Index)
+    (family : ProcessFamily Index Incoming Outgoing)
+    (amp : Process Incoming Outgoing → ℂ)
+    (normalized : ∑ i, Complex.normSq (amp (family.process i)) = 1)
+    (i : Index) :
+    (processPhaseMeasurement phased family amp normalized).probability i =
+      Complex.normSq (amp (family.process i)) := by
+  simp [processPhaseMeasurement, BornMeasurement.probability, phased.unit]
+
 /-- If the process amplitude is Lorentz-scalar, each Born probability is frame invariant. -/
 theorem processMeasurement_probability_invariant
     (family : ProcessFamily Index Incoming Outgoing)
@@ -132,6 +176,25 @@ noncomputable def phaseTwist {Index : Type u} [Fintype Index]
     (phased : PhaseFamily Index) (family : ChannelFamily Index) : ChannelFamily Index where
   channel := fun i =>
     ⟨phased.phase i * (family.channel i).first, phased.phase i * (family.channel i).second⟩
+
+/-- A phase-shifted two-channel scattering matrix. -/
+noncomputable def interferenceScatter (phase : ℂ) (incoming : TwoChannel) : TwoChannel where
+  first := (incoming.first + phase * incoming.second) / Scattering.normalizer
+  second := (incoming.first - phase * incoming.second) / Scattering.normalizer
+
+/-- Interference with a unit-norm phase preserves total probability. -/
+theorem interferenceScatter_probability_conserved (phase : ℂ)
+    (unit : Complex.normSq phase = 1) (incoming : TwoChannel) :
+    Scattering.totalProbability (interferenceScatter phase incoming) =
+      Scattering.totalProbability incoming := by
+  unfold interferenceScatter Scattering.totalProbability
+  dsimp
+  rw [Complex.normSq_div, Complex.normSq_div, Scattering.normalizer_normSq]
+  rw [← add_div, Scattering.parallelogram_normSq]
+  have hphase : Complex.normSq (phase * incoming.second) = Complex.normSq incoming.second := by
+    rw [Complex.normSq_mul, unit, one_mul]
+  rw [hphase]
+  ring
 
 /-- Total Born probability of the family is the sum of the channel probabilities. -/
 noncomputable def familyProbability {Index : Type u} [Fintype Index]
@@ -192,6 +255,17 @@ theorem phaseTwist_measurement_probability_sum {Index : Type u} [Fintype Index]
         (by simpa [familyProbability_phaseTwist] using normalized)).probability outcome = 1 :=
   (measurement (phaseTwist phased family)
       (by simpa [familyProbability_phaseTwist] using normalized)).probability_normalized
+
+/-- A phase-interfering beam splitter preserves total probability. -/
+theorem interferenceMeasurement_probability_sum
+    (phase : ℂ) (unit : Complex.normSq phase = 1) (incoming : TwoChannel)
+    (normalized : Scattering.totalProbability incoming = 1) :
+    ∑ outcome, (Scattering.outgoingMeasurement (interferenceScatter phase incoming)
+        (by simpa [interferenceScatter_probability_conserved phase unit incoming] using
+          normalized)).probability outcome = 1 :=
+  (Scattering.outgoingMeasurement (interferenceScatter phase incoming)
+      (by simpa [interferenceScatter_probability_conserved phase unit incoming] using
+        normalized)).probability_normalized
 
 end ChannelTransfer
 
