@@ -56,6 +56,26 @@ theorem totalWeight_invariant_of_s_t_u (family : ProcessFamily Index)
   intro event lorentz'
   simpa using TwoToTwo.invariantAmplitude amp event lorentz'
 
+/-- A finite family of scattering channels can be regarded as a Born measurement. -/
+noncomputable def measurement (family : ProcessFamily Index) (amp : TwoToTwo → ℂ)
+    (normalized : totalWeight family amp = 1) : BornMeasurement where
+  Outcome := Index
+  finiteOutcome := inferInstance
+  amplitude := fun i => amp (family.event i)
+  normalized := normalized
+
+/-- The Born probability of each channel is invariant under a common Lorentz frame. -/
+theorem probability_invariant_of_s_t_u (family : ProcessFamily Index)
+    (amp : ℝ → ℝ → ℝ → ℂ) (lorentz : Transform) (i : Index)
+    (normalized : totalWeight family (fun event => amp event.s event.t event.u) = 1) :
+    (measurement (family.transform lorentz) (fun event => amp event.s event.t event.u)
+        (by
+          simpa [totalWeight_invariant_of_s_t_u (family := family) (amp := amp)
+            (lorentz := lorentz)] using normalized)).probability i =
+    (measurement family (fun event => amp event.s event.t event.u) normalized).probability i := by
+  simp [measurement, BornMeasurement.probability, transform,
+    TwoToTwo.invariantAmplitude]
+
 end ProcessFamily
 
 end PhysicsModel.InteractingScattering
