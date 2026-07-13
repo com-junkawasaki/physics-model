@@ -104,6 +104,8 @@ as open physical obligations rather than hidden as theorems.
   idempotence, mutual annihilation, completeness, and chirality eigenvalue theorems
 - exact one-loop inverse-coupling RG solution, squared-coupling beta function,
   asymptotic-freedom monotonicity, arbitrary weakening, and finite Landau-pole time
+- exact Standard Model one-loop beta numerators from particle content:
+  `SU(3)=7`, `SU(2)=19/6`, `U(1)=-41/6`, with the corresponding UV/IR sign classification
 
 Run:
 
@@ -116,7 +118,7 @@ lake exe physics-model
 
 1. construct a controlled coarse-graining map feeding the now-checked metric,
    connection, Riemann, Ricci, and four-dimensional Einstein tensor pipeline;
-2. derive one-loop coefficients, the now-checked running-coupling/chiral/electroweak
+2. derive the now-checked one-loop coefficients, running-coupling/chiral/electroweak
    algebra, and its particle assignments from microscopic modes (matrix group actions, representation
    dimensions, charges, Yukawa rules, anomaly sums, the Higgs vacuum, photon kernel,
    and `W/Z` tree-level mass relations are checked);
